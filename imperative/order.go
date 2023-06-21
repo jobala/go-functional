@@ -1,11 +1,11 @@
 package imperative
 
-var Orders = []Order{Ord1, Ord2}
+import "github.com/jobala/functional-go/types"
 
 func (o Order) GetExpeditedOrderCustomerNames() []string {
 	res := make([]string, 0)
 
-	for _, order := range Orders {
+	for _, order := range types.Orders {
 		if order.Expedited {
 			res = append(res, order.Customer.Name)
 		}
@@ -17,7 +17,7 @@ func (o Order) GetExpeditedOrderCustomerNames() []string {
 func (o Order) GetExpeditedOrdersCustomerAddresses() []string {
 	res := make([]string, 0)
 
-	for _, order := range Orders {
+	for _, order := range types.Orders {
 		if order.Expedited {
 			res = append(res, order.Customer.Address)
 		}
@@ -29,7 +29,7 @@ func (o Order) GetExpeditedOrdersCustomerAddresses() []string {
 func (o Order) GetExpeditedOrdersShippingAddresses() []string {
 	res := make([]string, 0)
 
-	for _, order := range Orders {
+	for _, order := range types.Orders {
 		if order.Expedited {
 			res = append(res, order.ShippingAddress)
 		}
@@ -43,28 +43,4 @@ type Order struct {
 	ShippingAddress string
 	Expedited       bool
 	Customer        Customer
-}
-
-var cus1 = Customer{
-	Name:       "Heart of Gold",
-	Address:    "The Milky Way Galaxy",
-	Enterprise: false,
-}
-
-var cus2 = Customer{
-	Name:       "Milliways Restaurant",
-	Address:    "Magrathea",
-	Enterprise: true,
-}
-
-var Ord1 = Order{
-	Customer:        cus1,
-	Expedited:       false,
-	ShippingAddress: "Infinitely Improbable",
-}
-
-var Ord2 = Order{
-	Customer:        cus2,
-	Expedited:       true,
-	ShippingAddress: "Magrathea",
 }
